@@ -1,70 +1,123 @@
-# Getting Started with Create React App
+# React Meetup App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React application for managing meetups with advanced navigation, favorites functionality, and scroll animations.
 
-## Available Scripts
+## 🚀 Implemented Features
 
-In the project directory, you can run:
+### 📱 Header with Scroll Animation
+- **Behavior**: Header hides on scroll down and reappears on scroll up
+- **Implementation**: Custom hook `useScrollDirection` that detects scroll direction
+- **Animation**: Smooth transition with CSS transforms
+- **Threshold**: Activates only after 100px of scroll to prevent flickering
 
-### `npm start`
+### 🧭 SEO-Friendly Navigation
+- **React Router**: Navigation between pages with semantic URLs
+- **Implemented routes**:
+  - `/` - Main page with all meetups
+  - `/favorites` - Favorites page
+  - `/new-meetup` - Form to create new meetups
+- **SEO-friendly**: URLs reflect page content
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### ⭐ Favorites System
+- **Complete functionality**: Add and remove meetups from favorites
+- **Global state**: Context API to manage favorites across the app
+- **Persistence**: Favorites are maintained during the session
+- **Dynamic badge**: Counter in header showing number of favorites
+- **Responsive UI**: Buttons dynamically change between "Add to favorites" and "Remove from favorites"
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 🧪 Comprehensive Test Suite
+- **Unit Tests**: Testing of `useScrollDirection` hook with scroll simulation
+- **E2E Tests**: Testing complete header behavior with scroll
+- **Integration Tests**: Testing complete favorites flow
+- **Technologies**: Jest, React Testing Library, Enzyme
+- **Coverage**: Advanced mocking of browser APIs (fetch, scroll, requestAnimationFrame)
 
-### `npm test`
+## 🛠️ Technologies Used
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **React 18** - Main framework
+- **React Router v6** - Navigation and routing
+- **Context API** - Global state management
+- **CSS Modules** - Modular and scoped styles
+- **Custom Hooks** - Reusable logic (useScrollDirection, useFetch)
+- **Jest & React Testing Library** - Testing framework
+- **Enzyme** - Additional testing utilities
 
-### `npm run build`
+## 📦 Installation and Setup
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Prerequisites
+- Node.js (version 14 or higher)
+- npm or yarn
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Steps to run the project
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. **Clone the repository**
+```bash
+git clone [REPOSITORY_URL]
+cd react_meetup
+```
 
-### `npm run eject`
+2. **Install dependencies**
+```bash
+npm install
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+3. **Run in development mode**
+```bash
+npm start
+```
+The application will open at [http://localhost:3000](http://localhost:3000)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+4. **Run tests**
+```bash
+npm test
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+5. **Build for production**
+```bash
+npm run build
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 🏗️ Project Architecture
 
-## Learn More
+```
+src/
+├── components/          # Reusable components
+│   ├── layout/         # Header, Navigation, Layout
+│   ├── meetups/        # MeetupItem, MeetupList, NewMeetupForm
+│   └── ui/             # Card, LoadingSpinner
+├── contexts/           # Context providers (FavoritesContext)
+├── pages/              # Main pages
+├── util-hooks/         # Custom hooks
+├── utils/              # Utilities and constants
+└── App.js              # Main component with routing
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 🎯 Implementation Decisions
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Header Scroll Animation
+- **Approach**: Custom hook instead of external libraries for better control
+- **Performance**: Use of `requestAnimationFrame` for smooth animations
+- **UX**: 100px threshold to avoid erratic behavior
 
-### Code Splitting
+### State Management
+- **Context API**: Chosen over Redux for simplicity and project size
+- **Local Storage**: Not implemented intentionally to maintain simplicity
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Testing Strategy
+- **Pyramid approach**: More unit tests, fewer E2E tests
+- **Mocking strategy**: Complete mocking of browser APIs for deterministic tests
+- **Helper functions**: Code duplication reduction in tests
 
-### Analyzing the Bundle Size
+## 🔧 Available Scripts
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- `npm start` - Runs the app in development mode
+- `npm test` - Runs the test suite
+- `npm run build` - Builds the app for production
+- `npm run eject` - Exposes webpack configuration (not recommended)
 
-### Making a Progressive Web App
+## 📝 Additional Notes
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- The application is fully responsive
+- Meetup data is loaded from `public/data.json`
+- Tests include advanced mocking to simulate browser behaviors
+- Code follows React best practices and is optimized for performance
