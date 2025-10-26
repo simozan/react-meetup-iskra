@@ -1,14 +1,19 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { FavoritesContext } from "../../App";
+import { useScrollDirection } from "../../util-hooks/useScrollDirection";
 
 import classes from "./MainNavigation.module.css";
 
 export default function MainNavigation() {
   const { favorites } = useContext(FavoritesContext);
+  const { isVisible } = useScrollDirection();
 
   return (
-    <header className={classes.header} data-test="navigation-header">
+    <header 
+      className={`${classes.header} ${!isVisible ? classes.hidden : ''}`} 
+      data-test="navigation-header"
+    >
       <div className={classes.logo}>React Meetups</div>
       <nav>
         <ul>
